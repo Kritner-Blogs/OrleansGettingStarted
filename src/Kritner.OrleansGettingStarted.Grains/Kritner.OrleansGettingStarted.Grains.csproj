@@ -8,5 +8,9 @@
     <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="2.1.0" />
     <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.1.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kritner.OrleansGettingStarted.GrainInterfaces\Kritner.OrleansGettingStarted.GrainInterfaces.csproj" />
+  </ItemGroup>
   
 </Project>

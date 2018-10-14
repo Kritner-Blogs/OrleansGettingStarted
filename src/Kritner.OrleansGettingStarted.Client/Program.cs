@@ -78,19 +78,12 @@ namespace Kritner.OrleansGettingStarted.Client
 
         private static async Task DoClientWork(IClusterClient client)
         {
-            Console.WriteLine("Hello, what should I call you?");
-            var name = Console.ReadLine();
-
-            if (string.IsNullOrEmpty(name))
-            {
-                name = "anon";
-            }
-
             // example of calling grains from the initialized client
             var grain = client.GetGrain<IHelloWorld>(Guid.NewGuid());
-            
-            var response = await grain.SayHello(name);
-            Console.WriteLine($"\n\n{response}\n\n");
+
+            Console.WriteLine($"{await grain.SayHello("1")}");
+            Console.WriteLine($"{await grain.SayHello("2")}");
+            Console.WriteLine($"{await grain.SayHello("3")}");
         }
     }
 }

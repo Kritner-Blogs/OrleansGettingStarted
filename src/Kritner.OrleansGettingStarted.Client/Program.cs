@@ -80,9 +80,10 @@ namespace Kritner.OrleansGettingStarted.Client
         {
             // example of calling grains from the initialized client
             var grain = client.GetGrain<IHelloWorld>(Guid.NewGuid());
+            var grain2 = client.GetGrain<IHelloWorld>(Guid.NewGuid());
 
             Console.WriteLine($"{await grain.SayHello("1")}");
-            Console.WriteLine($"{await grain.SayHello("2")}");
+            Console.WriteLine($"{await grain2.SayHello("2")}");
             Console.WriteLine($"{await grain.SayHello("3")}");
         }
     }

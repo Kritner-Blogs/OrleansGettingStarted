@@ -46,6 +46,7 @@ namespace Kritner.OrleansGettingStarted.SiloHost
                     options.ServiceId = "HelloWorldApp";
                 })
                 .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
+                .AddMemoryGrainStorage(Constants.OrleansMemoryProvider)
                 //.ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(HelloWorld).Assembly).WithReferences())
                 .ConfigureLogging(logging => logging.AddConsole());
 

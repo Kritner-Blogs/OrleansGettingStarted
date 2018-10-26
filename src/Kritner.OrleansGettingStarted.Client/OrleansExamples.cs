@@ -11,24 +11,25 @@ namespace Kritner.OrleansGettingStarted.Client
     public class OrleansExamples
     {
         private const string ESCAPE_STRING = "-1";
+        private readonly IOrleansFunctionProvider _orleansFunctionProvider;
 
-        private readonly List<IOrleansFunction> _orleansFunctions = new List<IOrleansFunction>()
+        public OrleansExamples(IOrleansFunctionProvider orleansFunctionProvider)
         {
-            new HelloWorld(),
-            new MultipleInstantiations(),
-            new StatefulWork()            
-        };
-        
+            _orleansFunctionProvider = orleansFunctionProvider;
+        }
+
         public async Task ChooseFunction(IClusterClient clusterClient)
         {
+            var orleansFunctions = _orleansFunctionProvider.GetOrleansFunctions();
+
             var input = string.Empty;
             while (input != ESCAPE_STRING)
             {
                 Console.WriteLine("Pick a function to use for Orleans demonstration:");
                 ConsoleHelpers.LineSeparator();
-                for (int i = 0; i < _orleansFunctions.Count; i++)
+                for (int i = 0; i < orleansFunctions.Count; i++)
                 {
-                    Console.WriteLine($" {i} - {_orleansFunctions[i].Description}");
+                    Console.WriteLine($" {i} - {orleansFunctions[i].Description}");
                 }
 
                 Console.WriteLine("-1 - to exit");
@@ -49,7 +50,7 @@ namespace Kritner.OrleansGettingStarted.Client
                 
                 try
                 {
-                    await _orleansFunctions[inputResult].PerformFunction(clusterClient);
+                    await orleansFunctions[inputResult].PerformFunction(clusterClient);
                     ConsoleHelpers.LineSeparator();
                 }
                 catch(ArgumentOutOfRangeException)

@@ -1,4 +1,5 @@
-﻿using Kritner.OrleansGettingStarted.GrainInterfaces;
+﻿using Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
+using Kritner.OrleansGettingStarted.GrainInterfaces;
 using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Configuration;
@@ -24,7 +25,8 @@ namespace Kritner.OrleansGettingStarted.Client
             {
                 using (var client = await StartClientWithRetries())
                 {
-                    await new OrleansExamples().ChooseFunction(client);
+                    await new OrleansExamples(new OrleansFunctionProvider())
+                        .ChooseFunction(client);
                 }
 
                 return 0;

@@ -25,11 +25,19 @@ namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
 
             Console.WriteLine($"About to start {result} instances of a grain. Hold onto your butts.");
             Console.WriteLine("Press any key to get started.");
+            Console.ReadKey();
 
             for (int i = 0; i < result; i++)
             {
-                var grain = clusterClient.GetGrain<IHelloWorld>(Guid.NewGuid());
-                await grain.SayHello(i.ToString());
+                var helloGrain = clusterClient.GetGrain<IHelloWorld>(
+                    Guid.NewGuid()
+                );
+                await helloGrain.SayHello(i.ToString());
+
+                var statefulGrain = clusterClient.GetGrain<IVisitTracker>(
+                    i.ToString()
+                );
+                await statefulGrain.Visit();
             }
 
             Console.WriteLine("All done!");

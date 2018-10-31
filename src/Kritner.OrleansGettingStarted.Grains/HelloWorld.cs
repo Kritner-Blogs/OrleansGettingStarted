@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Kritner.OrleansGettingStarted.Grains
 {
-    public class HelloWorld : Grain, IHelloWorld
+    public class HelloWorld : Grain, IHelloWorld, IGrainMarker
     {
         public Task<string> SayHello(string name)
         {

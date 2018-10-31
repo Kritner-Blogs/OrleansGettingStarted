@@ -50,7 +50,7 @@ namespace Kritner.OrleansGettingStarted.Client
                     options.ClusterId = "dev";
                     options.ServiceId = "HelloWorldApp";
                 })
-                //.ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(IHelloWorld).Assembly).WithReferences())
+                .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(IGrainInterfaceMarker).Assembly).WithReferences())
                 // I don't want the chatter of logging from the client for now.
                 //.ConfigureLogging(logging => logging.AddConsole())
                 .Build();

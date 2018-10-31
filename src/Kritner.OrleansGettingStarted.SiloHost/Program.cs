@@ -47,7 +47,11 @@ namespace Kritner.OrleansGettingStarted.SiloHost
                 })
                 .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
                 .AddMemoryGrainStorage(Constants.OrleansMemoryProvider)
-                //.ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(HelloWorld).Assembly).WithReferences())
+                .ConfigureApplicationParts(parts =>
+                {
+                    parts.AddApplicationPart(typeof(IGrainMarker).Assembly).WithReferences();
+                })
+                .UseDashboard(options => { })
                 .ConfigureLogging(logging => logging.AddConsole());
 
             var host = builder.Build();

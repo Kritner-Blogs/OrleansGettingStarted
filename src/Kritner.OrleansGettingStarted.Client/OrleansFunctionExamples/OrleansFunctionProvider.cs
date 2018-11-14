@@ -13,7 +13,8 @@ namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
                 new HelloWorld(),
                 new MultipleInstantiations(),
                 new StatefulWork(),
-                new ShowoffDashboard()
+                new ShowoffDashboard(),
+                new DependencyInjectionEmailService()
             };
         }
     }

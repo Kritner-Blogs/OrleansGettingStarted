@@ -1,4 +1,7 @@
-﻿using Kritner.OrleansGettingStarted.Grains;
+﻿using Kritner.OrleansGettingStarted.GrainInterfaces;
+using Kritner.OrleansGettingStarted.Grains;
+using Kritner.OrleansGettingStarted.SiloHost.Helpers;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Configuration;
@@ -51,6 +54,7 @@ namespace Kritner.OrleansGettingStarted.SiloHost
                 {
                     parts.AddApplicationPart(typeof(IGrainMarker).Assembly).WithReferences();
                 })
+                .ConfigureServices(DependencyInjectionHelper.IocContainerRegistration)
                 .UseDashboard(options => { })
                 .ConfigureLogging(logging => logging.AddConsole());
 

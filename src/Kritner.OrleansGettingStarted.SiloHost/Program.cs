@@ -56,6 +56,7 @@ namespace Kritner.OrleansGettingStarted.SiloHost
                 })
                 .ConfigureServices(DependencyInjectionHelper.IocContainerRegistration)
                 .UseDashboard(options => { })
+                .UseInMemoryReminderService()
                 .ConfigureLogging(logging => logging.AddConsole());
 
             var host = builder.Build();

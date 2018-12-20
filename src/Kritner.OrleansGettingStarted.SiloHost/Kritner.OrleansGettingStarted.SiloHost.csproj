@@ -12,8 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kritner.OrleansGettingStarted.Common\Kritner.OrleansGettingStarted.Common.csproj" />
     <ProjectReference Include="..\Kritner.OrleansGettingStarted.GrainInterfaces\Kritner.OrleansGettingStarted.GrainInterfaces.csproj" />
     <ProjectReference Include="..\Kritner.OrleansGettingStarted.Grains\Kritner.OrleansGettingStarted.Grains.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\_appsettings\appsettings.json" Link="appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\_appsettings\appsettings.dev.json" Link="appsettings.dev.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

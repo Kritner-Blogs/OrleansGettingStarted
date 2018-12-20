@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kritner.OrleansGettingStart
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kritner.OrleansGettingStarted.SiloHost", "src\Kritner.OrleansGettingStarted.SiloHost\Kritner.OrleansGettingStarted.SiloHost.csproj", "{60C38B38-65C6-4F8F-AF7B-37ACC1D8E4FB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kritner.OrleansGettingStarted.Common", "src\Kritner.OrleansGettingStarted.Common\Kritner.OrleansGettingStarted.Common.csproj", "{E7346FF3-2DB9-430A-8A6E-7949A8B470B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{60C38B38-65C6-4F8F-AF7B-37ACC1D8E4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60C38B38-65C6-4F8F-AF7B-37ACC1D8E4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60C38B38-65C6-4F8F-AF7B-37ACC1D8E4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7346FF3-2DB9-430A-8A6E-7949A8B470B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7346FF3-2DB9-430A-8A6E-7949A8B470B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7346FF3-2DB9-430A-8A6E-7949A8B470B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7346FF3-2DB9-430A-8A6E-7949A8B470B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{A2997108-2330-4544-B3B0-4EF2B4537E14} = {E9107609-5D2A-4988-81F6-EDF031856CD0}
 		{93D88312-0369-4858-8F2E-1A0F11FCB224} = {E9107609-5D2A-4988-81F6-EDF031856CD0}
 		{60C38B38-65C6-4F8F-AF7B-37ACC1D8E4FB} = {E9107609-5D2A-4988-81F6-EDF031856CD0}
+		{E7346FF3-2DB9-430A-8A6E-7949A8B470B2} = {E9107609-5D2A-4988-81F6-EDF031856CD0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3713286-1C26-4298-9843-247ACCE599CC}

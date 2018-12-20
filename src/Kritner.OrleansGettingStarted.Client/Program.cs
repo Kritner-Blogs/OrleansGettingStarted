@@ -1,21 +1,33 @@
 ﻿using Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
+using Kritner.OrleansGettingStarted.Common.Config;
+using Kritner.OrleansGettingStarted.Common.Helpers;
 using Kritner.OrleansGettingStarted.GrainInterfaces;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Runtime;
 using System;
 using System.Threading.Tasks;
+using Kritner.OrleansGettingStarted.Common;
+using Kritner.OrleansGettingStarted.Client.ExtensionMethods;
 
 namespace Kritner.OrleansGettingStarted.Client
 {
     public class Program
     {
+        private static Startup Startup;
+        private static IServiceProvider ServiceProvider;
         const int initializeAttemptsBeforeFailing = 5;
         private static int attempt = 0;
 
         static int Main(string[] args)
         {
+            Startup = ConsoleAppConfigurator.BootstrapApp();
+            var serviceCollection = new ServiceCollection();
+            Startup.ConfigureServices(serviceCollection);
+            ServiceProvider = serviceCollection.BuildServiceProvider();
+
             return RunMainAsync().Result;
         }
 
@@ -44,7 +56,10 @@ namespace Kritner.OrleansGettingStarted.Client
             attempt = 0;
             IClusterClient client;
             client = new ClientBuilder()
-                .UseLocalhostClustering()
+                .ConfigureClustering(
+                    ServiceProvider.GetService<IOptions<OrleansConfig>>(), 
+                    Startup.HostingEnvironment.EnvironmentName
+                )
                 .Configure<ClusterOptions>(options =>
                 {
                     options.ClusterId = "dev";

@@ -1,8 +1,12 @@
-﻿using Kritner.OrleansGettingStarted.GrainInterfaces;
+﻿using Kritner.OrleansGettingStarted.Common;
+using Kritner.OrleansGettingStarted.Common.Config;
+using Kritner.OrleansGettingStarted.Common.Helpers;
 using Kritner.OrleansGettingStarted.Grains;
+using Kritner.OrleansGettingStarted.SiloHost.ExtensionMethods;
 using Kritner.OrleansGettingStarted.SiloHost.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
@@ -14,8 +18,16 @@ namespace Kritner.OrleansGettingStarted.SiloHost
 {
     public class Program
     {
+        private static Startup Startup;
+        private static IServiceProvider ServiceProvider;
+
         public static int Main(string[] args)
         {
+            Startup = ConsoleAppConfigurator.BootstrapApp();
+            var serviceCollection = new ServiceCollection();
+            Startup.ConfigureServices(serviceCollection);
+            ServiceProvider = serviceCollection.BuildServiceProvider();
+
             return RunMainAsync().Result;
         }
 
@@ -42,7 +54,10 @@ namespace Kritner.OrleansGettingStarted.SiloHost
         {
             // define the cluster configuration
             var builder = new SiloHostBuilder()
-                .UseLocalhostClustering()
+                .ConfigureClustering(
+                    ServiceProvider.GetService<IOptions<OrleansConfig>>(),
+                    Startup.HostingEnvironment.EnvironmentName
+                )
                 .Configure<ClusterOptions>(options =>
                 {
                     options.ClusterId = "dev";

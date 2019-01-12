@@ -9,6 +9,7 @@ Code companion to a series of blog posts related to Orleans.
 * [Microsoft Orleans — Code Generation Issue?](https://medium.com/@kritner/microsoft-orleans-code-generation-issue-c294bd17b65a?source=friends_link&sk=bbbfd1adb450cf231e898b997c88b508)
 * [Microsoft Orleans - Dependency Injection](https://medium.com/@kritner/microsoft-orleans-dependency-injection-6379d52a7169?source=friends_link&sk=6c3883a5213d65eb251b56c717e0e4f2)
 * [Microsoft Orleans — Reminders and grains calling grains](https://medium.com/@kritner/microsoft-orleans-reminders-and-grains-calling-grains-6ad58ad104a2?source=friends_link&sk=4b3602443e3b0bb80de46e091d4f6aa6)
+* [Microsoft Orleans — Easily switching between “development” and “production” configurations.](https://medium.com/@kritner/microsoft-orleans-easily-switching-between-development-and-production-configurations-20e109be6458?source=friends_link&sk=1e8fc6aa072a5b293d029c00012165b3)
 
 ## To Run
 

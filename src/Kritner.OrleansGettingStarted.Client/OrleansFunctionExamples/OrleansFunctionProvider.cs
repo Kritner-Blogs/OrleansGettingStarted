@@ -15,7 +15,9 @@ namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
                 new StatefulWork(),
                 new ShowoffDashboard(),
                 new DependencyInjectionEmailService(),
-                new EverythingIsOkReminder()
+                new EverythingIsOkReminder(),
+                new GrainObserverReceiver(),
+                new GrainObserverEventSender(),
             };
         }
     }

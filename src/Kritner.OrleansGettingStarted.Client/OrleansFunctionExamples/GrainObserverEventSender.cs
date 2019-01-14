@@ -14,7 +14,7 @@ namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
 
         public async Task PerformFunction(IClusterClient clusterClient)
         {
-            var grain = clusterClient.GetGrain<IObserverManager>(0);
+            var grain = clusterClient.GetGrain<IObservableManager>(0);
 
             Console.WriteLine("Enter a message to send to subscribed observers.");
             var message = Console.ReadLine();

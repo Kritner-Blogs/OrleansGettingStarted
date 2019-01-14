@@ -16,7 +16,7 @@ namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
         {
             Console.WriteLine("Observing for behavior, stops once behavior observed.");
 
-            var observerManager = clusterClient.GetGrain<IObserverManager>(0);
+            var observerManager = clusterClient.GetGrain<IObservableManager>(0);
             var observerRef = await clusterClient
                 .CreateObjectReference<IObserverSample>(this);
 

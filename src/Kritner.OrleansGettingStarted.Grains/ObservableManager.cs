@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Kritner.OrleansGettingStarted.Grains
 {
-    public class ObserverSample : Grain, IObserverManager, IGrainMarker
+    public class ObservableManager : Grain, IObservableManager, IGrainMarker
     {
         private GrainObserverManager<IObserverSample> _subsManager;
 

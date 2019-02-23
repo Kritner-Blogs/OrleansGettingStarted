@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
+using Orleans.Statistics;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -70,6 +71,7 @@ namespace Kritner.OrleansGettingStarted.SiloHost
                     parts.AddApplicationPart(typeof(IGrainMarker).Assembly).WithReferences();
                 })
                 .ConfigureServices(DependencyInjectionHelper.IocContainerRegistration)
+                .UsePerfCounterEnvironmentStatistics()
                 .UseDashboard(options => { })
                 .UseInMemoryReminderService()
                 .ConfigureLogging(logging => logging.AddConsole());

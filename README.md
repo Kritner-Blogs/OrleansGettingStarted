@@ -1,5 +1,7 @@
 # OrleansGettingStarted
 
+[![Join the chat at https://gitter.im/Kritner-Blogs/OrleansGettingStarted](https://badges.gitter.im/Kritner-Blogs/OrleansGettingStarted.svg)](https://gitter.im/Kritner-Blogs/OrleansGettingStarted?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Code companion to a series of blog posts related to Orleans.
 
 * [Getting Started with Microsoft Orleans](https://medium.com/@kritner/getting-started-with-microsoft-orleans-882cdac4307f?source=friends_link&sk=1fc3451d71a19dcb49f2c8bbeb6b079e)

@@ -12,7 +12,6 @@ using Orleans.Configuration;
 using Orleans.Hosting;
 using Orleans.Statistics;
 using System;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Kritner.OrleansGettingStarted.SiloHost
@@ -64,7 +63,6 @@ namespace Kritner.OrleansGettingStarted.SiloHost
                     options.ClusterId = "dev";
                     options.ServiceId = "HelloWorldApp";
                 })
-                .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
                 .AddMemoryGrainStorage(Constants.OrleansMemoryProvider)
                 .ConfigureApplicationParts(parts =>
                 {

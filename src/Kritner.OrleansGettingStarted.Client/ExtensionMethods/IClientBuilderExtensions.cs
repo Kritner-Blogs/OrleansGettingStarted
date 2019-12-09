@@ -32,21 +32,23 @@ namespace Kritner.OrleansGettingStarted.Client.ExtensionMethods
                 throw new ArgumentException(nameof(orleansConfigOptions));
             }
 
-            switch (environmentName.ToLower())
-            {
-                case "dev":
-                    builder.UseLocalhostClustering();
-                    break;
-                default:
-                    var orleansConfig = orleansConfigOptions.Value;
-                    List<IPEndPoint> nodes = new List<IPEndPoint>();
-                    foreach (var node in orleansConfig.NodeIpAddresses)
-                    {
-                        nodes.Add(new IPEndPoint(IPAddress.Parse(node), orleansConfig.GatewayPort));
-                    }
-                    builder.UseStaticClustering(nodes.ToArray());
-                    break;
-            }
+            builder.UseLocalhostClustering();
+            
+//            switch (environmentName.ToLower())
+//            {
+//                case "dev":
+//                    builder.UseLocalhostClustering();
+//                    break;
+//                default:
+//                    var orleansConfig = orleansConfigOptions.Value;
+//                    List<IPEndPoint> nodes = new List<IPEndPoint>();
+//                    foreach (var node in orleansConfig.NodeIpAddresses)
+//                    {
+//                        nodes.Add(new IPEndPoint(IPAddress.Parse(node), orleansConfig.GatewayPort));
+//                    }
+//                    builder.UseStaticClustering(nodes.ToArray());
+//                    break;
+//            }
 
             return builder;
         }

@@ -1,7 +1,7 @@
 ﻿using Kritner.OrleansGettingStarted.Common;
 using Kritner.OrleansGettingStarted.Common.Config;
 using Kritner.OrleansGettingStarted.Common.Helpers;
-using Kritner.OrleansGettingStarted.Grains;
+using Kritner.Orleans.GettingStarted.Grains;
 using Kritner.OrleansGettingStarted.SiloHost.ExtensionMethods;
 using Kritner.OrleansGettingStarted.SiloHost.Helpers;
 using Microsoft.Extensions.DependencyInjection;

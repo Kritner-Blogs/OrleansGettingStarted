@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E9107609-5D2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kritner.OrleansGettingStarted.Client", "src\Kritner.OrleansGettingStarted.Client\Kritner.OrleansGettingStarted.Client.csproj", "{EAB651C0-703F-4D01-B38D-1224ABE9A865}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kritner.OrleansGettingStarted.GrainInterfaces", "src\Kritner.OrleansGettingStarted.GrainInterfaces\Kritner.OrleansGettingStarted.GrainInterfaces.csproj", "{A2997108-2330-4544-B3B0-4EF2B4537E14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kritner.Orleans.GettingStarted.GrainInterfaces", "src\Kritner.Orleans.GettingStarted.GrainInterfaces\Kritner.Orleans.GettingStarted.GrainInterfaces.csproj", "{A2997108-2330-4544-B3B0-4EF2B4537E14}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kritner.OrleansGettingStarted.Grains", "src\Kritner.OrleansGettingStarted.Grains\Kritner.OrleansGettingStarted.Grains.csproj", "{93D88312-0369-4858-8F2E-1A0F11FCB224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kritner.Orleans.GettingStarted.Grains", "src\Kritner.Orleans.GettingStarted.Grains\Kritner.Orleans.GettingStarted.Grains.csproj", "{93D88312-0369-4858-8F2E-1A0F11FCB224}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kritner.OrleansGettingStarted.SiloHost", "src\Kritner.OrleansGettingStarted.SiloHost\Kritner.OrleansGettingStarted.SiloHost.csproj", "{60C38B38-65C6-4F8F-AF7B-37ACC1D8E4FB}"
 EndProject

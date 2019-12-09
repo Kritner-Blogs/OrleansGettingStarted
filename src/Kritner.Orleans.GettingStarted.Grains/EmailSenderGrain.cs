@@ -1,8 +1,8 @@
-﻿using Kritner.OrleansGettingStarted.GrainInterfaces;
+﻿using Kritner.Orleans.GettingStarted.GrainInterfaces;
 using Orleans;
 using System.Threading.Tasks;
 
-namespace Kritner.OrleansGettingStarted.Grains
+namespace Kritner.Orleans.GettingStarted.Grains
 {
     public class EmailSenderGrain : Grain, IEmailSenderGrain, IGrainMarker
     {

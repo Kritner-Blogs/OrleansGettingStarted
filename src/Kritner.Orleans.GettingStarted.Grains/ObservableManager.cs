@@ -1,11 +1,11 @@
-﻿using Kritner.OrleansGettingStarted.GrainInterfaces;
+﻿using Kritner.Orleans.GettingStarted.GrainInterfaces;
 using Orleans;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kritner.OrleansGettingStarted.Grains
+namespace Kritner.Orleans.GettingStarted.Grains
 {
     public class ObservableManager : Grain, IObservableManager, IGrainMarker
     {

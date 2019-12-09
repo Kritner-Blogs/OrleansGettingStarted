@@ -1,7 +1,7 @@
 ﻿using Orleans;
 using System.Threading.Tasks;
 
-namespace Kritner.OrleansGettingStarted.GrainInterfaces
+namespace Kritner.Orleans.GettingStarted.GrainInterfaces
 {
     public interface IEverythingIsOkGrain : IGrainWithStringKey, IRemindable
     {

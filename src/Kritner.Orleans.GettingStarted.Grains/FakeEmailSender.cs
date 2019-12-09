@@ -1,10 +1,10 @@
-﻿using Kritner.OrleansGettingStarted.GrainInterfaces;
+﻿using Kritner.Orleans.GettingStarted.GrainInterfaces;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kritner.OrleansGettingStarted.Grains
+namespace Kritner.Orleans.GettingStarted.Grains
 {
     public class FakeEmailSender : IEmailSender
     {

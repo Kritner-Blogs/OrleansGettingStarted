@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kritner.Orleans.GettingStarted.GrainInterfaces\Kritner.Orleans.GettingStarted.GrainInterfaces.csproj" />
     <ProjectReference Include="..\Kritner.OrleansGettingStarted.Common\Kritner.OrleansGettingStarted.Common.csproj" />
-    <ProjectReference Include="..\Kritner.OrleansGettingStarted.GrainInterfaces\Kritner.OrleansGettingStarted.GrainInterfaces.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,10 +1,10 @@
-﻿using Kritner.OrleansGettingStarted.GrainInterfaces;
+﻿using Kritner.Orleans.GettingStarted.GrainInterfaces;
 using Orleans;
 using Orleans.Providers;
 using System;
 using System.Threading.Tasks;
 
-namespace Kritner.OrleansGettingStarted.Grains
+namespace Kritner.Orleans.GettingStarted.Grains
 {
     [StorageProvider(ProviderName = Constants.OrleansMemoryProvider)]
     public class VisitTracker : Grain<VisitTrackerState>, IVisitTracker, IGrainMarker

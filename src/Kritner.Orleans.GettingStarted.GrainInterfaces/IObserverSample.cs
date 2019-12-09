@@ -1,7 +1,7 @@
 ﻿using Orleans;
 using System;
 
-namespace Kritner.OrleansGettingStarted.GrainInterfaces
+namespace Kritner.Orleans.GettingStarted.GrainInterfaces
 {
     public interface IObserverSample : IGrainObserver
     {

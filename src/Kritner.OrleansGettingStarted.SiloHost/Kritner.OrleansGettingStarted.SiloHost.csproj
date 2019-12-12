@@ -2,20 +2,20 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Orleans.OrleansTelemetryConsumers.Counters" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Orleans.Server" Version="2.2.3" />
-    <PackageReference Include="OrleansDashboard" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansTelemetryConsumers.Counters" Version="3.0.2" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="3.0.2" />
+    <PackageReference Include="OrleansDashboard" Version="3.0.7" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kritner.Orleans.GettingStarted.GrainInterfaces\Kritner.Orleans.GettingStarted.GrainInterfaces.csproj" />
+    <ProjectReference Include="..\Kritner.Orleans.GettingStarted.Grains\Kritner.Orleans.GettingStarted.Grains.csproj" />
     <ProjectReference Include="..\Kritner.OrleansGettingStarted.Common\Kritner.OrleansGettingStarted.Common.csproj" />
-    <ProjectReference Include="..\Kritner.OrleansGettingStarted.GrainInterfaces\Kritner.OrleansGettingStarted.GrainInterfaces.csproj" />
-    <ProjectReference Include="..\Kritner.OrleansGettingStarted.Grains\Kritner.OrleansGettingStarted.Grains.csproj" />
   </ItemGroup>
 
   <ItemGroup>

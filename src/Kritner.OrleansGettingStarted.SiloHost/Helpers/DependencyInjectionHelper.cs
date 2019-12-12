@@ -1,5 +1,5 @@
-﻿using Kritner.OrleansGettingStarted.GrainInterfaces;
-using Kritner.OrleansGettingStarted.Grains;
+﻿using Kritner.Orleans.GettingStarted.GrainInterfaces;
+using Kritner.Orleans.GettingStarted.Grains;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Kritner.OrleansGettingStarted.SiloHost.Helpers

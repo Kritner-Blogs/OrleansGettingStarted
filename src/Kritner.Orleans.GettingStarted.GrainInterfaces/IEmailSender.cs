@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Kritner.OrleansGettingStarted.GrainInterfaces
+namespace Kritner.Orleans.GettingStarted.GrainInterfaces
 {
     public interface IEmailSender
     {

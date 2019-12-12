@@ -1,7 +1,7 @@
 ﻿using Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
 using Kritner.OrleansGettingStarted.Common.Config;
 using Kritner.OrleansGettingStarted.Common.Helpers;
-using Kritner.OrleansGettingStarted.GrainInterfaces;
+using Kritner.Orleans.GettingStarted.GrainInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Orleans;

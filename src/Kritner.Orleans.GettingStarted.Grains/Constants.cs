@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Kritner.OrleansGettingStarted.Grains
+namespace Kritner.Orleans.GettingStarted.Grains
 {
     public class Constants
     {

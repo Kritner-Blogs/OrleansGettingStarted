@@ -7,8 +7,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Orleans.OrleansTelemetryConsumers.Counters" Version="3.0.1" />
-    <PackageReference Include="Microsoft.Orleans.Server" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Orleans.OrleansTelemetryConsumers.Counters" Version="3.0.2" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="3.0.2" />
     <PackageReference Include="OrleansDashboard" Version="3.0.7" />
   </ItemGroup>
 

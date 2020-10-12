@@ -15,21 +15,17 @@ namespace Kritner.OrleansGettingStarted.Client.ExtensionMethods
         /// the Orleans environment.
         /// </summary>
         /// <param name="builder">The client builder.</param>
-        /// <param name="orleansConfigOptions">The Orleans configuration options.</param>
+        /// <param name="orleansConfig">The Orleans configuration.</param>
         /// <param name="environmentName">The environment.</param>
         public static IClientBuilder ConfigureClustering(
             this IClientBuilder builder, 
-            IOptions<OrleansConfig> orleansConfigOptions, 
+            OrleansConfig orleansConfig, 
             string environmentName
         )
         {
             if (builder == null)
             {
                 throw new ArgumentNullException(nameof(builder));
-            }
-            if (orleansConfigOptions.Value == default(OrleansConfig))
-            {
-                throw new ArgumentException(nameof(orleansConfigOptions));
             }
 
             builder.UseLocalhostClustering();

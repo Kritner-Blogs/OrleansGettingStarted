@@ -5,51 +5,40 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
 using System;
 using System.IO;
+using Kritner.OrleansGettingStarted.Common.Config;
+using Microsoft.Extensions.Options;
 
 namespace Kritner.OrleansGettingStarted.Common.Helpers
 {
     public static class ConsoleAppConfigurator
     {
-        public static Startup BootstrapApp()
+        public static (string env, IConfigurationRoot configurationRoot, OrleansConfig orleansConfig) BootstrapConfigurationRoot()
         {
-            var environment = GetEnvironment();
-            var hostingEnvironment = GetHostingEnvironment(environment);
-            var configurationBuilder = CreateConfigurationBuilder(environment);
+            var env = GetEnvironmentName();
+            var tempConfigBuilder = new ConfigurationBuilder();
 
-            return new Startup(hostingEnvironment, configurationBuilder);
+            tempConfigBuilder
+                .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: false)
+                .AddJsonFile($"appsettings.{env}.json", optional: false, reloadOnChange: false);
+
+            var configurationRoot = tempConfigBuilder.Build();
+
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.Configure<OrleansConfig>(configurationRoot.GetSection(nameof(OrleansConfig)));
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+            var orleansConfig = serviceProvider.GetService<IOptions<OrleansConfig>>().Value;
+            return (env, configurationRoot, orleansConfig);
         }
-
-        private static string GetEnvironment()
+        
+        public static string GetEnvironmentName()
         {
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            if (string.IsNullOrEmpty(environmentName))
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            if (string.IsNullOrWhiteSpace(env))
             {
-                return "dev";
+                throw new Exception("ASPNETCORE_ENVIRONMENT env variable not set.");
             }
 
-            return environmentName;
-        }
-
-        private static IHostingEnvironment GetHostingEnvironment(string environmentName)
-        {
-            return new HostingEnvironment
-            {
-                EnvironmentName = environmentName,
-                ApplicationName = AppDomain.CurrentDomain.FriendlyName,
-                ContentRootPath = AppDomain.CurrentDomain.BaseDirectory,
-                ContentRootFileProvider = new PhysicalFileProvider(AppDomain.CurrentDomain.BaseDirectory)
-            };
-        }
-
-        private static IConfigurationBuilder CreateConfigurationBuilder(string environmentName)
-        {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{environmentName}.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables();
-
-            return config;
+            return env;
         }
     }
 }

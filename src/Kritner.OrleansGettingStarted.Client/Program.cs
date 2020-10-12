@@ -11,31 +11,29 @@ using System;
 using System.Threading.Tasks;
 using Kritner.OrleansGettingStarted.Common;
 using Kritner.OrleansGettingStarted.Client.ExtensionMethods;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace Kritner.OrleansGettingStarted.Client
 {
     public class Program
     {
-        private static Startup Startup;
-        private static IServiceProvider ServiceProvider;
         const int initializeAttemptsBeforeFailing = 5;
         private static int attempt = 0;
 
-        static int Main(string[] args)
+        static async Task<int> Main(string[] args)
         {
-            Startup = ConsoleAppConfigurator.BootstrapApp();
-            var serviceCollection = new ServiceCollection();
-            Startup.ConfigureServices(serviceCollection);
-            ServiceProvider = serviceCollection.BuildServiceProvider();
-
-            return RunMainAsync().Result;
+            var (env, configurationRoot, orleansConfig) = 
+                ConsoleAppConfigurator.BootstrapConfigurationRoot();
+            
+            return await CreateHostBuilder(args, env, configurationRoot, orleansConfig);
         }
 
-        private static async Task<int> RunMainAsync()
+        private static async Task<int> CreateHostBuilder(string[] args, string env, IConfigurationRoot configurationRoot, OrleansConfig orleansConfig)
         {
             try
             {
-                using (var client = await StartClientWithRetries())
+                await using (var client = await StartClientWithRetries(env, orleansConfig))
                 {
                     await new OrleansExamples(new OrleansFunctionProvider())
                         .ChooseFunction(client);
@@ -51,14 +49,14 @@ namespace Kritner.OrleansGettingStarted.Client
             }
         }
 
-        private static async Task<IClusterClient> StartClientWithRetries()
+        private static async Task<IClusterClient> StartClientWithRetries(string env, OrleansConfig orleansConfig)
         {
             attempt = 0;
             IClusterClient client;
             client = new ClientBuilder()
                 .ConfigureClustering(
-                    ServiceProvider.GetService<IOptions<OrleansConfig>>(), 
-                    Startup.HostingEnvironment.EnvironmentName
+                    orleansConfig, 
+                    env
                 )
                 .Configure<ClusterOptions>(options =>
                 {

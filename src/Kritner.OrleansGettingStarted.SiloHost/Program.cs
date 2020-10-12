@@ -1,6 +1,4 @@
-﻿using Kritner.OrleansGettingStarted.Common;
-using Kritner.OrleansGettingStarted.Common.Config;
-using Kritner.OrleansGettingStarted.Common.Helpers;
+﻿using Kritner.OrleansGettingStarted.Common.Config;
 using Kritner.Orleans.GettingStarted.Grains;
 using Kritner.OrleansGettingStarted.SiloHost.ExtensionMethods;
 using Kritner.OrleansGettingStarted.SiloHost.Helpers;
@@ -13,70 +11,53 @@ using Orleans.Hosting;
 using Orleans.Statistics;
 using System;
 using System.Threading.Tasks;
+using Kritner.OrleansGettingStarted.Common.Helpers;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace Kritner.OrleansGettingStarted.SiloHost
 {
     public class Program
     {
-        private static Startup Startup;
-        private static IServiceProvider ServiceProvider;
-
-        public static int Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            Startup = ConsoleAppConfigurator.BootstrapApp();
-            var serviceCollection = new ServiceCollection();
-            Startup.ConfigureServices(serviceCollection);
-            ServiceProvider = serviceCollection.BuildServiceProvider();
-
-            return RunMainAsync().Result;
+            var (env, configurationRoot, orleansConfig) = 
+                ConsoleAppConfigurator.BootstrapConfigurationRoot();
+            
+            await CreateHostBuilder(args, env, configurationRoot, orleansConfig).Build().RunAsync();
         }
-
-        private static async Task<int> RunMainAsync()
+        
+        private static IHostBuilder CreateHostBuilder(string[] args, string env, IConfigurationRoot configurationRoot, OrleansConfig orleansConfig)
         {
-            try
-            {
-                var host = await StartSilo();
-                Console.WriteLine("Press Enter to terminate...");
-                Console.ReadLine();
-
-                await host.StopAsync();
-
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return 1;
-            }
-        }
-
-        private static async Task<ISiloHost> StartSilo()
-        {
-            // define the cluster configuration
-            var builder = new SiloHostBuilder()
-                .ConfigureClustering(
-                    ServiceProvider.GetService<IOptions<OrleansConfig>>(),
-                    Startup.HostingEnvironment.EnvironmentName
-                )
-                .Configure<ClusterOptions>(options =>
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, builder) =>
                 {
-                    options.ClusterId = "dev";
-                    options.ServiceId = "HelloWorldApp";
+                    context.HostingEnvironment.EnvironmentName = env;
+                    builder.AddConfiguration(configurationRoot);
                 })
-                .AddMemoryGrainStorage(Constants.OrleansMemoryProvider)
-                .ConfigureApplicationParts(parts =>
+                .UseOrleans(siloBuilder =>
                 {
-                    parts.AddApplicationPart(typeof(IGrainMarker).Assembly).WithReferences();
-                })
-                .ConfigureServices(DependencyInjectionHelper.IocContainerRegistration)
-                .UsePerfCounterEnvironmentStatistics()
-                .UseDashboard(options => { })
-                .UseInMemoryReminderService()
-                .ConfigureLogging(logging => logging.AddConsole());
-
-            var host = builder.Build();
-            await host.StartAsync();
-            return host;
+                    siloBuilder
+                        .ConfigureClustering(
+                            orleansConfig,
+                            env
+                        )
+                        .Configure<ClusterOptions>(options =>
+                        {
+                            options.ClusterId = "dev";
+                            options.ServiceId = "HelloWorldApp";
+                        })
+                            .AddMemoryGrainStorage(Constants.OrleansMemoryProvider)
+                            .ConfigureApplicationParts(parts =>
+                            {
+                                parts.AddApplicationPart(typeof(IGrainMarker).Assembly).WithReferences();
+                            })
+                            .ConfigureServices(DependencyInjectionHelper.IocContainerRegistration)
+                            .UsePerfCounterEnvironmentStatistics()
+                            .UseDashboard(options => { })
+                            .UseInMemoryReminderService()
+                            .ConfigureLogging(logging => logging.AddConsole());
+                });
         }
     }
 }

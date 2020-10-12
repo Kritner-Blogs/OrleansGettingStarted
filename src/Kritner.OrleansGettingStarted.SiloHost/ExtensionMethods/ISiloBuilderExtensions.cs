@@ -7,28 +7,24 @@ using System.Net;
 
 namespace Kritner.OrleansGettingStarted.SiloHost.ExtensionMethods
 {
-    public static class ISiloHostBuilderExtensions
+    public static class ISiloBuilderExtensions
     {
         /// <summary>
         /// Configures clustering for the Orleans Silo Host based on
         /// the Orleans environment.
         /// </summary>
-        /// <param name="builder">The silo host builder.</param>
-        /// <param name="orleansConfigOptions">The Orleans configuration options.</param>
+        /// <param name="builder">The silo builder.</param>
+        /// <param name="orleansConfig">The Orleans configuration.</param>
         /// <param name="environmentName">The environment.</param>
-        public static ISiloHostBuilder ConfigureClustering(
-            this ISiloHostBuilder builder,
-            IOptions<OrleansConfig> orleansConfigOptions,
+        public static ISiloBuilder ConfigureClustering(
+            this ISiloBuilder builder,
+            OrleansConfig orleansConfig,
             string environmentName
         )
         {
             if (builder == null)
             {
                 throw new ArgumentNullException(nameof(builder));
-            }
-            if (orleansConfigOptions.Value == default(OrleansConfig))
-            {
-                throw new ArgumentException(nameof(orleansConfigOptions));
             }
 
             builder.UseLocalhostClustering();

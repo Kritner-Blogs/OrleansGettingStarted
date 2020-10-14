@@ -45,11 +45,11 @@ namespace Kritner.Orleans.GettingStarted.Grains.HealthChecks
 			if (memoryUsed > DegradedThreshold)
 			{
 				return Task.FromResult(HealthCheckResult.Degraded(
-					$"Memory utilization is unhealthy at {memoryUsed:0.00}%."));
+					$"Memory utilization is degraded at {memoryUsed:0.00}%."));
 			}
 			
 			return Task.FromResult(HealthCheckResult.Healthy(
-				$"Memory utilization is unhealthy at {memoryUsed:0.00}%."));
+				$"Memory utilization is healthy at {memoryUsed:0.00}%."));
 		}
 	}
 }

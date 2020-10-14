@@ -2,16 +2,14 @@
 using Kritner.Orleans.GettingStarted.Grains;
 using Kritner.OrleansGettingStarted.SiloHost.ExtensionMethods;
 using Kritner.OrleansGettingStarted.SiloHost.Helpers;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
 using Orleans.Statistics;
-using System;
 using System.Threading.Tasks;
 using Kritner.OrleansGettingStarted.Common.Helpers;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
@@ -35,6 +33,8 @@ namespace Kritner.OrleansGettingStarted.SiloHost
                     context.HostingEnvironment.EnvironmentName = env;
                     builder.AddConfiguration(configurationRoot);
                 })
+                .ConfigureServices(DependencyInjectionHelper.IocContainerRegistration)
+                .ConfigureWebHostDefaults(builder => { builder.UseStartup<Startup>(); })
                 .UseOrleans(siloBuilder =>
                 {
                     siloBuilder
@@ -47,16 +47,19 @@ namespace Kritner.OrleansGettingStarted.SiloHost
                             options.ClusterId = "dev";
                             options.ServiceId = "HelloWorldApp";
                         })
-                            .AddMemoryGrainStorage(Constants.OrleansMemoryProvider)
-                            .ConfigureApplicationParts(parts =>
-                            {
-                                parts.AddApplicationPart(typeof(IGrainMarker).Assembly).WithReferences();
-                            })
-                            .ConfigureServices(DependencyInjectionHelper.IocContainerRegistration)
-                            .UsePerfCounterEnvironmentStatistics()
-                            .UseDashboard(options => { })
-                            .UseInMemoryReminderService()
-                            .ConfigureLogging(logging => logging.AddConsole());
+                        .AddMemoryGrainStorage(Constants.OrleansMemoryProvider)
+                        .ConfigureApplicationParts(parts =>
+                        {
+                            parts.AddApplicationPart(typeof(IGrainMarker).Assembly).WithReferences();
+                        })
+                        .UsePerfCounterEnvironmentStatistics()
+                        .UseDashboard(options => { })
+                        .UseInMemoryReminderService()
+                        .ConfigureLogging(logging =>
+                        {
+                            logging.SetMinimumLevel(LogLevel.Warning);
+                            logging.AddConsole();
+                        });
                 });
         }
     }

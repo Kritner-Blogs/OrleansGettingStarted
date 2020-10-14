@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using Kritner.Orleans.GettingStarted.GrainInterfaces.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Orleans;
+using Orleans.Concurrency;
 using Orleans.Statistics;
 
 namespace Kritner.Orleans.GettingStarted.Grains.HealthChecks
 {
+	[StatelessWorker(1)]
 	public class CpuHealthCheckGrain : Grain, ICpuHealthCheckGrain
 	{
 		private const float UnhealthyThreshold = 90;

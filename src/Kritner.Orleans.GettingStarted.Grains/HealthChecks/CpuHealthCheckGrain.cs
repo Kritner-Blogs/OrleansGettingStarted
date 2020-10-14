@@ -26,18 +26,18 @@ namespace Kritner.Orleans.GettingStarted.Grains.HealthChecks
 			if (_hostEnvironmentStatistics.CpuUsage > UnhealthyThreshold)
 			{
 				return Task.FromResult(HealthCheckResult.Unhealthy(
-					$"CPU utilization is unhealthy at {_hostEnvironmentStatistics.CpuUsage * 100}%."));
+					$"CPU utilization is unhealthy at {_hostEnvironmentStatistics.CpuUsage}%."));
 				
 			}
 			
 			if (_hostEnvironmentStatistics.CpuUsage > DegradedThreshold)
 			{
 				return Task.FromResult(HealthCheckResult.Degraded(
-					$"CPU utilization is degraded at {_hostEnvironmentStatistics.CpuUsage * 100}%."));
+					$"CPU utilization is degraded at {_hostEnvironmentStatistics.CpuUsage}%."));
 			}
 			
 			return Task.FromResult(HealthCheckResult.Healthy(
-				$"CPU utilization is healthy at {_hostEnvironmentStatistics.CpuUsage * 100}%."));
+				$"CPU utilization is healthy at {_hostEnvironmentStatistics.CpuUsage}%."));
 		}
 	}
 }

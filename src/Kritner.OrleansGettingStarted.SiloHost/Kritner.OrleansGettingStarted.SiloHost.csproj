@@ -24,8 +24,4 @@
     <Content Include="..\_appsettings\appsettings.dev.json" Link="appsettings.dev.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="OrleansGrainHealthChecks" />
-  </ItemGroup>
-
 </Project>

@@ -34,7 +34,14 @@ namespace Kritner.OrleansGettingStarted.SiloHost
                     builder.AddConfiguration(configurationRoot);
                 })
                 .ConfigureServices(DependencyInjectionHelper.IocContainerRegistration)
-                .ConfigureWebHostDefaults(builder => { builder.UseStartup<Startup>(); })
+                .ConfigureLogging(logging => {
+                    logging.AddConsole();
+                    logging.SetMinimumLevel(LogLevel.Information);
+                })
+                .ConfigureWebHostDefaults(builder => 
+                { 
+                    builder.UseStartup<Startup>();
+                })
                 .UseOrleans(siloBuilder =>
                 {
                     siloBuilder

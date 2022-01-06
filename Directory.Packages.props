@@ -1,0 +1,24 @@
+<Project>
+
+    <!-- 
+        Centrally managed repository nuget package versioning, read more at https://blog.kritner.com/2021/10/01/dotnet-centralized-package-versioning/
+    -->
+    <ItemGroup>
+        <PackageVersion Include="Microsoft.Extensions.Configuration" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Extensions.Configuration.FileExtensions" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="$(MicrosoftVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="$(OrleansVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Orleans.Core.Abstractions" Version="$(OrleansVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Orleans.Client" Version="$(OrleansVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Orleans.OrleansTelemetryConsumers.Counters" Version="$(OrleansVersionsOfPackages)" />
+        <PackageVersion Include="Microsoft.Orleans.Server" Version="$(OrleansVersionsOfPackages)" />
+        <PackageVersion Include="OrleansDashboard" Version="3.6.1" />
+    </ItemGroup>
+</Project>

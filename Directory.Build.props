@@ -1,0 +1,14 @@
+<Project>
+    <!-- 
+        Centrally managed repository nuget package versioning, read more at https://blog.kritner.com/2021/10/01/dotnet-centralized-package-versioning/
+    -->
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <MicrosoftVersionsOfPackages>6.0.0</MicrosoftVersionsOfPackages>
+        <OrleansVersionsOfPackages>3.5.1</OrleansVersionsOfPackages>
+    </PropertyGroup>
+    
+</Project>

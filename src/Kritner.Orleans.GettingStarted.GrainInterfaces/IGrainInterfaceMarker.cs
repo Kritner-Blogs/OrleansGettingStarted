@@ -1,7 +1,6 @@
-﻿namespace Kritner.Orleans.GettingStarted.GrainInterfaces
-{
-    public interface IGrainInterfaceMarker
-    {
+﻿namespace Kritner.Orleans.GettingStarted.GrainInterfaces;
 
-    }
+public interface IGrainInterfaceMarker
+{
+
 }

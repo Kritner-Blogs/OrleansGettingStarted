@@ -5,26 +5,25 @@ using Kritner.Orleans.GettingStarted.GrainInterfaces.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Orleans;
 
-namespace Kritner.OrleansGettingStarted.SiloHost.HealthChecks
+namespace Kritner.OrleansGettingStarted.SiloHost.HealthChecks;
+
+public class BasicOrleansHealthCheck : OrleansHealthCheckBase
 {
-    public class BasicOrleansHealthCheck : OrleansHealthCheckBase
+    public BasicOrleansHealthCheck(IClusterClient client) : base(client)
     {
-        public BasicOrleansHealthCheck(IClusterClient client) : base(client)
-        {
 
+    }
+
+    protected override async Task<HealthCheckResult> CheckHealthGrainAsync(HealthCheckContext context, CancellationToken cancellationToken)
+    {
+        try
+        {
+            return await _client.GetGrain<IBasicHealthCheckGrain>(Guid.Empty)
+                .CheckHealthAsync(context, cancellationToken);
         }
-
-        protected override async Task<HealthCheckResult> CheckHealthGrainAsync(HealthCheckContext context, CancellationToken cancellationToken)
+        catch (Exception e)
         {
-            try
-            {
-                return await _client.GetGrain<IBasicHealthCheckGrain>(Guid.Empty)
-                    .CheckHealthAsync(context, cancellationToken);
-            }
-            catch (Exception e)
-            {
-                return HealthCheckResult.Unhealthy($"Health check failed.", e);
-            }
+            return HealthCheckResult.Unhealthy($"Health check failed.", e);
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Orleans;
 
-namespace Kritner.Orleans.GettingStarted.GrainInterfaces
+namespace Kritner.Orleans.GettingStarted.GrainInterfaces;
+
+public interface IEverythingIsOkGrain : IGrainWithStringKey, IRemindable
 {
-    public interface IEverythingIsOkGrain : IGrainWithStringKey, IRemindable
-    {
-        Task Start();
-        Task Stop();
-    }
+    Task Start();
+    Task Stop();
 }

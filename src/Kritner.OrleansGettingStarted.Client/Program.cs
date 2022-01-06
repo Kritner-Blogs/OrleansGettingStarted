@@ -14,80 +14,79 @@ using Orleans;
 using Orleans.Configuration;
 using Orleans.Runtime;
 
-namespace Kritner.OrleansGettingStarted.Client
+namespace Kritner.OrleansGettingStarted.Client;
+
+public class Program
 {
-    public class Program
+    const int initializeAttemptsBeforeFailing = 5;
+    private static int attempt = 0;
+
+    static async Task<int> Main(string[] args)
     {
-        const int initializeAttemptsBeforeFailing = 5;
-        private static int attempt = 0;
+        var (env, configurationRoot, orleansConfig) =
+            ConsoleAppConfigurator.BootstrapConfigurationRoot();
 
-        static async Task<int> Main(string[] args)
+        return await CreateHostBuilder(args, env, configurationRoot, orleansConfig);
+    }
+
+    private static async Task<int> CreateHostBuilder(string[] args, string env, IConfigurationRoot configurationRoot, OrleansConfig orleansConfig)
+    {
+        try
         {
-            var (env, configurationRoot, orleansConfig) =
-                ConsoleAppConfigurator.BootstrapConfigurationRoot();
+            await using (var client = await StartClientWithRetries(env, orleansConfig))
+            {
+                await new OrleansExamples(new OrleansFunctionProvider())
+                    .ChooseFunction(client);
+            }
 
-            return await CreateHostBuilder(args, env, configurationRoot, orleansConfig);
+            return 0;
         }
-
-        private static async Task<int> CreateHostBuilder(string[] args, string env, IConfigurationRoot configurationRoot, OrleansConfig orleansConfig)
+        catch (Exception e)
         {
-            try
-            {
-                await using (var client = await StartClientWithRetries(env, orleansConfig))
-                {
-                    await new OrleansExamples(new OrleansFunctionProvider())
-                        .ChooseFunction(client);
-                }
-
-                return 0;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                Console.ReadKey();
-                return 1;
-            }
+            Console.WriteLine(e);
+            Console.ReadKey();
+            return 1;
         }
+    }
 
-        private static async Task<IClusterClient> StartClientWithRetries(string env, OrleansConfig orleansConfig)
+    private static async Task<IClusterClient> StartClientWithRetries(string env, OrleansConfig orleansConfig)
+    {
+        attempt = 0;
+        IClusterClient client;
+        client = new ClientBuilder()
+            .ConfigureClustering(
+                orleansConfig,
+                env
+            )
+            .Configure<ClusterOptions>(options =>
+            {
+                options.ClusterId = "dev";
+                options.ServiceId = "HelloWorldApp";
+            })
+            .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(IGrainInterfaceMarker).Assembly).WithReferences())
+            // I don't want the chatter of logging from the client for now.
+            //.ConfigureLogging(logging => logging.AddConsole())
+            .Build();
+
+        await client.Connect(RetryFilter);
+        Console.WriteLine("Client successfully connect to silo host");
+        return client;
+    }
+
+    private static async Task<bool> RetryFilter(Exception exception)
+    {
+        if (exception.GetType() != typeof(SiloUnavailableException))
         {
-            attempt = 0;
-            IClusterClient client;
-            client = new ClientBuilder()
-                .ConfigureClustering(
-                    orleansConfig,
-                    env
-                )
-                .Configure<ClusterOptions>(options =>
-                {
-                    options.ClusterId = "dev";
-                    options.ServiceId = "HelloWorldApp";
-                })
-                .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(IGrainInterfaceMarker).Assembly).WithReferences())
-                // I don't want the chatter of logging from the client for now.
-                //.ConfigureLogging(logging => logging.AddConsole())
-                .Build();
-
-            await client.Connect(RetryFilter);
-            Console.WriteLine("Client successfully connect to silo host");
-            return client;
+            Console.WriteLine($"Cluster client failed to connect to cluster with unexpected error.  Exception: {exception}");
+            return false;
         }
-
-        private static async Task<bool> RetryFilter(Exception exception)
+        attempt++;
+        Console.WriteLine($"Cluster client attempt {attempt} of {initializeAttemptsBeforeFailing} failed to connect to cluster.  Exception: {exception}");
+        if (attempt > initializeAttemptsBeforeFailing)
         {
-            if (exception.GetType() != typeof(SiloUnavailableException))
-            {
-                Console.WriteLine($"Cluster client failed to connect to cluster with unexpected error.  Exception: {exception}");
-                return false;
-            }
-            attempt++;
-            Console.WriteLine($"Cluster client attempt {attempt} of {initializeAttemptsBeforeFailing} failed to connect to cluster.  Exception: {exception}");
-            if (attempt > initializeAttemptsBeforeFailing)
-            {
-                return false;
-            }
-            await Task.Delay(TimeSpan.FromSeconds(4));
-            return true;
+            return false;
         }
+        await Task.Delay(TimeSpan.FromSeconds(4));
+        return true;
     }
 }

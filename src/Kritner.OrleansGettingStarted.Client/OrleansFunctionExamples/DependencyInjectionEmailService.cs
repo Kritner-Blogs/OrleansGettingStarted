@@ -30,8 +30,8 @@ namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
             ";
 
             await grain.SendEmail(
-                "someDude@somePlace.com", 
-                new[] { "someOtherDude@someOtherPlace.com" }, 
+                "someDude@somePlace.com",
+                new[] { "someOtherDude@someOtherPlace.com" },
                 "ayyy lmao",
                 body
             );

@@ -1,10 +1,10 @@
-﻿using Kritner.OrleansGettingStarted.Client.Helpers;
-using Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
-using Orleans;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Kritner.OrleansGettingStarted.Client.Helpers;
+using Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
+using Orleans;
 
 namespace Kritner.OrleansGettingStarted.Client
 {
@@ -41,19 +41,19 @@ namespace Kritner.OrleansGettingStarted.Client
                     Console.WriteLine("Exiting...");
                     return;
                 }
-                    
+
                 if (!int.TryParse(input, out var inputResult))
                 {
                     Console.WriteLine("Invalid Input. Please input a number.");
                     continue;
                 }
-                
+
                 try
                 {
                     await orleansFunctions[inputResult].PerformFunction(clusterClient);
                     ConsoleHelpers.LineSeparator();
                 }
-                catch(ArgumentOutOfRangeException)
+                catch (ArgumentOutOfRangeException)
                 {
                     Console.WriteLine("Invalid Input. Please ensure you pick a number/function from the provided list.");
                     ConsoleHelpers.LineSeparator();

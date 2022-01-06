@@ -1,9 +1,9 @@
-﻿using Orleans.Runtime;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Orleans.Runtime;
 
 namespace Kritner.Orleans.GettingStarted.Grains
 {

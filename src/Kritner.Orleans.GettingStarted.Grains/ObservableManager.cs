@@ -1,9 +1,9 @@
-﻿using Kritner.Orleans.GettingStarted.GrainInterfaces;
-using Orleans;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Kritner.Orleans.GettingStarted.GrainInterfaces;
+using Orleans;
 
 namespace Kritner.Orleans.GettingStarted.Grains
 {

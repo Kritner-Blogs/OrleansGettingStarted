@@ -1,18 +1,18 @@
-﻿using Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
+﻿using System;
+using System.Threading.Tasks;
+using Kritner.Orleans.GettingStarted.GrainInterfaces;
+using Kritner.OrleansGettingStarted.Client.ExtensionMethods;
+using Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
+using Kritner.OrleansGettingStarted.Common;
 using Kritner.OrleansGettingStarted.Common.Config;
 using Kritner.OrleansGettingStarted.Common.Helpers;
-using Kritner.Orleans.GettingStarted.GrainInterfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Runtime;
-using System;
-using System.Threading.Tasks;
-using Kritner.OrleansGettingStarted.Common;
-using Kritner.OrleansGettingStarted.Client.ExtensionMethods;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 
 namespace Kritner.OrleansGettingStarted.Client
 {
@@ -23,9 +23,9 @@ namespace Kritner.OrleansGettingStarted.Client
 
         static async Task<int> Main(string[] args)
         {
-            var (env, configurationRoot, orleansConfig) = 
+            var (env, configurationRoot, orleansConfig) =
                 ConsoleAppConfigurator.BootstrapConfigurationRoot();
-            
+
             return await CreateHostBuilder(args, env, configurationRoot, orleansConfig);
         }
 
@@ -55,7 +55,7 @@ namespace Kritner.OrleansGettingStarted.Client
             IClusterClient client;
             client = new ClientBuilder()
                 .ConfigureClustering(
-                    orleansConfig, 
+                    orleansConfig,
                     env
                 )
                 .Configure<ClusterOptions>(options =>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Kritner.OrleansGettingStarted.Client.Helpers;
 using Kritner.Orleans.GettingStarted.GrainInterfaces;
+using Kritner.OrleansGettingStarted.Client.Helpers;
 using Orleans;
 
 namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples

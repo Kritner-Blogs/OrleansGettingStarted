@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Kritner.OrleansGettingStarted.Client.Helpers;
 using Kritner.Orleans.GettingStarted.GrainInterfaces;
+using Kritner.OrleansGettingStarted.Client.Helpers;
 using Orleans;
 
 namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
@@ -27,7 +27,7 @@ namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
             Console.WriteLine("Reminder started.  Press any key to stop reminder.");
             Console.ReadKey();
 
-            await grain.Stop();            
+            await grain.Stop();
 
             ConsoleHelpers.ReturnToMenu();
         }

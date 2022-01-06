@@ -1,9 +1,9 @@
-﻿using Kritner.Orleans.GettingStarted.GrainInterfaces;
+﻿using System;
+using System.Threading.Tasks;
+using Kritner.Orleans.GettingStarted.GrainInterfaces;
 using Orleans;
 using Orleans.Providers;
 using Orleans.Runtime;
-using System;
-using System.Threading.Tasks;
 
 namespace Kritner.Orleans.GettingStarted.Grains
 {
@@ -20,7 +20,7 @@ namespace Kritner.Orleans.GettingStarted.Grains
 
             await emailSenderGrain.SendEmail(
                 "homer@anykey.com",
-                new[] 
+                new[]
                 {
                     "marge@anykey.com",
                     "bart@anykey.com",

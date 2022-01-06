@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.IO;
+using Kritner.OrleansGettingStarted.Common.Config;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
-using System;
-using System.IO;
-using Kritner.OrleansGettingStarted.Common.Config;
 using Microsoft.Extensions.Options;
 
 namespace Kritner.OrleansGettingStarted.Common.Helpers
@@ -29,7 +29,7 @@ namespace Kritner.OrleansGettingStarted.Common.Helpers
             var orleansConfig = serviceProvider.GetService<IOptions<OrleansConfig>>().Value;
             return (env, configurationRoot, orleansConfig);
         }
-        
+
         public static string GetEnvironmentName()
         {
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");

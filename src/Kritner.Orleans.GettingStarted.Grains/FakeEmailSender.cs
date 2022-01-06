@@ -1,8 +1,8 @@
-﻿using Kritner.Orleans.GettingStarted.GrainInterfaces;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Text;
 using System.Threading.Tasks;
+using Kritner.Orleans.GettingStarted.GrainInterfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Kritner.Orleans.GettingStarted.Grains
 {

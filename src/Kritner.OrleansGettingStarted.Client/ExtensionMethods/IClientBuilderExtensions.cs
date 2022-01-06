@@ -1,10 +1,10 @@
-﻿using Kritner.OrleansGettingStarted.Common.Config;
-using Microsoft.Extensions.Options;
-using Orleans;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using Kritner.OrleansGettingStarted.Common.Config;
+using Microsoft.Extensions.Options;
+using Orleans;
 
 namespace Kritner.OrleansGettingStarted.Client.ExtensionMethods
 {
@@ -18,8 +18,8 @@ namespace Kritner.OrleansGettingStarted.Client.ExtensionMethods
         /// <param name="orleansConfig">The Orleans configuration.</param>
         /// <param name="environmentName">The environment.</param>
         public static IClientBuilder ConfigureClustering(
-            this IClientBuilder builder, 
-            OrleansConfig orleansConfig, 
+            this IClientBuilder builder,
+            OrleansConfig orleansConfig,
             string environmentName
         )
         {
@@ -29,22 +29,22 @@ namespace Kritner.OrleansGettingStarted.Client.ExtensionMethods
             }
 
             builder.UseLocalhostClustering();
-            
-//            switch (environmentName.ToLower())
-//            {
-//                case "dev":
-//                    builder.UseLocalhostClustering();
-//                    break;
-//                default:
-//                    var orleansConfig = orleansConfigOptions.Value;
-//                    List<IPEndPoint> nodes = new List<IPEndPoint>();
-//                    foreach (var node in orleansConfig.NodeIpAddresses)
-//                    {
-//                        nodes.Add(new IPEndPoint(IPAddress.Parse(node), orleansConfig.GatewayPort));
-//                    }
-//                    builder.UseStaticClustering(nodes.ToArray());
-//                    break;
-//            }
+
+            //            switch (environmentName.ToLower())
+            //            {
+            //                case "dev":
+            //                    builder.UseLocalhostClustering();
+            //                    break;
+            //                default:
+            //                    var orleansConfig = orleansConfigOptions.Value;
+            //                    List<IPEndPoint> nodes = new List<IPEndPoint>();
+            //                    foreach (var node in orleansConfig.NodeIpAddresses)
+            //                    {
+            //                        nodes.Add(new IPEndPoint(IPAddress.Parse(node), orleansConfig.GatewayPort));
+            //                    }
+            //                    builder.UseStaticClustering(nodes.ToArray());
+            //                    break;
+            //            }
 
             return builder;
         }

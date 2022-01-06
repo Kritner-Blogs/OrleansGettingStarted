@@ -2,23 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
+namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
+
+public class OrleansFunctionProvider : IOrleansFunctionProvider
 {
-    public class OrleansFunctionProvider : IOrleansFunctionProvider
+    public IList<IOrleansFunction> GetOrleansFunctions()
     {
-        public IList<IOrleansFunction> GetOrleansFunctions()
+        return new List<IOrleansFunction>()
         {
-            return new List<IOrleansFunction>()
-            {
-                new HelloWorld(),
-                new MultipleInstantiations(),
-                new StatefulWork(),
-                new ShowoffDashboard(),
-                new DependencyInjectionEmailService(),
-                new EverythingIsOkReminder(),
-                new GrainObserverReceiver(),
-                new GrainObserverEventSender(),
-            };
-        }
+            new HelloWorld(),
+            new MultipleInstantiations(),
+            new StatefulWork(),
+            new ShowoffDashboard(),
+            new DependencyInjectionEmailService(),
+            new EverythingIsOkReminder(),
+            new GrainObserverReceiver(),
+            new GrainObserverEventSender(),
+        };
     }
 }

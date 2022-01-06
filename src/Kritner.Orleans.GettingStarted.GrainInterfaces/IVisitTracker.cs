@@ -1,11 +1,10 @@
-﻿using Orleans;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Orleans;
 
-namespace Kritner.Orleans.GettingStarted.GrainInterfaces
+namespace Kritner.Orleans.GettingStarted.GrainInterfaces;
+
+public interface IVisitTracker : IGrainWithStringKey, IGrainInterfaceMarker
 {
-    public interface IVisitTracker : IGrainWithStringKey, IGrainInterfaceMarker
-    {
-        Task<int> GetNumberOfVisits();
-        Task Visit();
-    }
+    Task<int> GetNumberOfVisits();
+    Task Visit();
 }

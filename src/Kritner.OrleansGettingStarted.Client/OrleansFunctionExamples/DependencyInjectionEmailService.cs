@@ -4,18 +4,18 @@ using System.Threading.Tasks;
 using Kritner.Orleans.GettingStarted.GrainInterfaces;
 using Orleans;
 
-namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
+namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
+
+public class DependencyInjectionEmailService : IOrleansFunction
 {
-    public class DependencyInjectionEmailService : IOrleansFunction
+    public string Description => "Shows off dependency injection within a grain implementation.";
+
+    public async Task PerformFunction(IClusterClient clusterClient)
     {
-        public string Description => "Shows off dependency injection within a grain implementation.";
+        var grain = clusterClient.GetGrain<IEmailSenderGrain>(Guid.NewGuid());
+        Console.WriteLine("Sending out a totally legit email using whatever service is registered with the IEmailSender on the SiloHost");
 
-        public async Task PerformFunction(IClusterClient clusterClient)
-        {
-            var grain = clusterClient.GetGrain<IEmailSenderGrain>(Guid.NewGuid());
-            Console.WriteLine("Sending out a totally legit email using whatever service is registered with the IEmailSender on the SiloHost");
-
-            var body = @"
+        var body = @"
                   .-'---`-.
                 ,'          `.
                 |             \
@@ -29,12 +29,11 @@ namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
                    /       ,'-'
             ";
 
-            await grain.SendEmail(
-                "someDude@somePlace.com", 
-                new[] { "someOtherDude@someOtherPlace.com" }, 
-                "ayyy lmao",
-                body
-            );
-        }
+        await grain.SendEmail(
+            "someDude@somePlace.com",
+            new[] { "someOtherDude@someOtherPlace.com" },
+            "ayyy lmao",
+            body
+        );
     }
 }

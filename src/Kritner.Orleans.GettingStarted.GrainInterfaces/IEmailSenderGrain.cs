@@ -1,10 +1,9 @@
-﻿using Orleans;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Orleans;
 
-namespace Kritner.Orleans.GettingStarted.GrainInterfaces
+namespace Kritner.Orleans.GettingStarted.GrainInterfaces;
+
+public interface IEmailSenderGrain : IGrainWithGuidKey, IGrainInterfaceMarker
 {
-    public interface IEmailSenderGrain : IGrainWithGuidKey, IGrainInterfaceMarker
-    {
-        Task SendEmail(string from, string[] to, string subject, string body);
-    }
+    Task SendEmail(string from, string[] to, string subject, string body);
 }

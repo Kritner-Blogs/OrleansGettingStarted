@@ -1,10 +1,9 @@
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Orleans;
 
-namespace Kritner.Orleans.GettingStarted.GrainInterfaces.HealthChecks
+namespace Kritner.Orleans.GettingStarted.GrainInterfaces.HealthChecks;
+
+public interface IMemoryHealthCheckGrain : IHealthCheck, IGrainWithGuidKey
 {
-	public interface IMemoryHealthCheckGrain : IHealthCheck, IGrainWithGuidKey
-	{
-		
-	}
+
 }

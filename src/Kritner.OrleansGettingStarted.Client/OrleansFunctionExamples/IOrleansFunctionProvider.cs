@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples
+namespace Kritner.OrleansGettingStarted.Client.OrleansFunctionExamples;
+
+public interface IOrleansFunctionProvider
 {
-    public interface IOrleansFunctionProvider
-    {
-        IList<IOrleansFunction> GetOrleansFunctions();
-    }
+    IList<IOrleansFunction> GetOrleansFunctions();
 }

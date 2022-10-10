@@ -30,12 +30,12 @@ public static class ConsoleAppConfigurator
         return (env, configurationRoot, orleansConfig);
     }
 
-    public static string GetEnvironmentName()
+    private static string GetEnvironmentName()
     {
         var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         if (string.IsNullOrWhiteSpace(env))
         {
-            throw new Exception("ASPNETCORE_ENVIRONMENT env variable not set.");
+            return "local";
         }
 
         return env;

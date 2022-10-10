@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.Orleans.Core.Abstractions" />
     <PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
+    <PackageReference Include="BitFaster.Caching" />
   </ItemGroup>
 
   <ItemGroup>

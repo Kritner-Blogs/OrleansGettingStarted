@@ -18,6 +18,8 @@ public class OrleansFunctionProvider : IOrleansFunctionProvider
             new EverythingIsOkReminder(),
             new GrainObserverReceiver(),
             new GrainObserverEventSender(),
+            new OrleansAddOrUpdateCache(),
+            new OrleansGetFromCache(),
         };
     }
 }

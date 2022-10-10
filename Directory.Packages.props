@@ -20,5 +20,6 @@
         <PackageVersion Include="Microsoft.Orleans.OrleansTelemetryConsumers.Counters" Version="$(OrleansVersionsOfPackages)" />
         <PackageVersion Include="Microsoft.Orleans.Server" Version="$(OrleansVersionsOfPackages)" />
         <PackageVersion Include="OrleansDashboard" Version="3.6.1" />
+        <PackageVersion Include="BitFaster.Caching" Version="2.1.0" />
     </ItemGroup>
 </Project>

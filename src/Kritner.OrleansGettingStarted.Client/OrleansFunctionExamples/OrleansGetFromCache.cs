@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Kritner.Orleans.GettingStarted.GrainInterfaces;
 using Kritner.OrleansGettingStarted.Client.Helpers;
@@ -13,11 +13,11 @@ public class OrleansGetFromCache : IOrleansFunction
     {
         Console.WriteLine("Enter a name for a cache, one will be created or retrieved:");
         var cacheName = Console.ReadLine();
-        
+
         var grain = clusterClient.GetGrain<IOrleansCache<string>>(cacheName);
-        
+
         ConsoleHelpers.LineSeparator();
-        
+
         Console.WriteLine($"Enter a key to retrieve the value from within the {grain.GetPrimaryKeyString()} grain.");
         var key = Console.ReadLine();
 

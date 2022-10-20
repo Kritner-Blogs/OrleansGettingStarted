@@ -1,4 +1,4 @@
-name: Build and test
+name: Dotnet Format and Build
 
 on:
   pull_request:
@@ -30,7 +30,7 @@ jobs:
     - name: Check Code Format
       run: dotnet-format --check
 
-  build-and-test:
+  build:
 
     runs-on: ubuntu-latest
     name: dotnet build and test

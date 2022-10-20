@@ -18,8 +18,8 @@ namespace Kritner.OrleansGettingStarted.Client;
 
 public class Program
 {
-    const int initializeAttemptsBeforeFailing = 5;
-    private static int attempt = 0;
+    const int InitializeAttemptsBeforeFailing = 5;
+    private static int _attempt;
 
     static async Task<int> Main(string[] args)
     {
@@ -51,7 +51,7 @@ public class Program
 
     private static async Task<IClusterClient> StartClientWithRetries(string env, OrleansConfig orleansConfig)
     {
-        attempt = 0;
+        _attempt = 0;
         IClusterClient client;
         client = new ClientBuilder()
             .ConfigureClustering(
@@ -80,9 +80,9 @@ public class Program
             Console.WriteLine($"Cluster client failed to connect to cluster with unexpected error.  Exception: {exception}");
             return false;
         }
-        attempt++;
-        Console.WriteLine($"Cluster client attempt {attempt} of {initializeAttemptsBeforeFailing} failed to connect to cluster.  Exception: {exception}");
-        if (attempt > initializeAttemptsBeforeFailing)
+        _attempt++;
+        Console.WriteLine($"Cluster client attempt {_attempt} of {InitializeAttemptsBeforeFailing} failed to connect to cluster.  Exception: {exception}");
+        if (_attempt > InitializeAttemptsBeforeFailing)
         {
             return false;
         }
